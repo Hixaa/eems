@@ -1,0 +1,11 @@
+[Unit]
+Description=xaees 
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=python3 xaees_main.py
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
