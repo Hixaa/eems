@@ -18,13 +18,15 @@ class CloudService:
     def __UserData(self,userData):
         return namedtuple('X', userData.keys())(*userData.values())
 
+    def __dataFormat(self, data):
+        return {"DateTime":data.DateTime,"UID":data.UID,"DoorNo":data.DoorNo,"Status":data.Status}
     def push(self,data):
         try:
             json_data_list = []
             for line in data:
                 d = json.loads(line.strip(), object_hook=self.__UserData)
                 # TODO: Add company id in list
-                json_data_list.append({"DateTime":d.DateTime,"UID":d.UID,"DoorNo":d.DoorNo,"Status":d.Status})
+                json_data_list.append(self.__dataFormat(d))
 
             files=[]
             headers = {}
@@ -59,7 +61,7 @@ class CloudService:
                     data = self.__storeData.getJsonArray()
                     for line in data:
                         d = json.loads(line.strip(),object_hook=self.__UserData)
-                        json_data_list.append({"DateTime":d.DateTime,"UID":d.UID,"DoorNo":d.DoorNo,"Status":d.Status})
+                        json_data_list.append(self.__dataFormat(d))
                     
                     files=[]
                     headers = {}
