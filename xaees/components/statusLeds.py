@@ -3,8 +3,8 @@ from time import sleep
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
-sysReady = 21
-rfidStat = 20
+sysReady = 20
+rfidStat = 26
 dataUploadStat = 16
 
 class statusLED:

@@ -54,7 +54,6 @@ class CloudService:
 
     def autoSync(self):
         while True:
-            # FIXME: Change OR to AND
             if(self.__storeData.checkAvailable_Files(recent = False) and self.__ping_server()):
                 try:
                     json_data_list=[]
