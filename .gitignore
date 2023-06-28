@@ -1,3 +1,6 @@
 .vscode/
 data_storage/
-components/__pycache__/*
+xaees/components/__pycache__/
+*.py[cod]
+*.pyc
+*.pyo
