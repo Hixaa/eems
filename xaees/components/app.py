@@ -1,4 +1,5 @@
 import sys
+import os
 import threading
 from time import sleep
 from datetime import datetime
@@ -45,15 +46,15 @@ class App:
                 
                 self.__DateTime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 # TODO: add company id in the json data
-                if(self.__uid1 != None and self.__uid1 != 'None'): #Outside       Sends "O_"
-                    print("[+] RFID1: ", self.__rfidDirection(self.__uid1), "\t", self.__uid1)
+                if(self.__uid1 != None and self.__uid1 != 'F'): #Outside       Sends "O_"
+                    print("[+] RFID1: ", self.__rfidDirection(self.__uid1), "\t", self.__uid1, "\t", len(self.__uid1))
                     formattedData_1 = self.__DATA_FORMAT%(self.__DateTime, self.__uid1[14:], self.__gateNo, self.__rfidDirection(self.__uid1))
                     print("RFID1: ",formattedData_1)
                     self.__data.append(formattedData_1)
                     
                 
-                if(self.__uid2 != None and self.__uid2 != 'None'): #Inside        Sends "I_"
-                    print("[+] RFID2: ", self.__rfidDirection(self.__uid2), "\t", self.__uid2)
+                if(self.__uid2 != None and self.__uid2 != 'F'): #Inside        Sends "I_"
+                    print("[+] RFID2: ", self.__rfidDirection(self.__uid2), "\t", self.__uid2, "\t", len(self.__uid2))
                     formattedData_2 = self.__DATA_FORMAT%(self.__DateTime, self.__uid2[14:], self.__gateNo, self.__rfidDirection(self.__uid2))
                     print("RFID2: ",formattedData_2)
                     self.__data.append(formattedData_2)
@@ -63,7 +64,8 @@ class App:
                 print("[+] xaees App exited safely!")
                 self.__myrfid.close()
                 self.__ledstat.close()
-                sys.exit()
+                # sys.exit()
+                os._exit(1)
 
     def __dataSync(self):
         while True:
@@ -91,4 +93,5 @@ class App:
         
     def close(self):
         self.__myrfid.close()
-        sys.exit()
+        # sys.exit()
+        os._exit(1)
