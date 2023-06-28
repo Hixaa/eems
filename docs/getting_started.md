@@ -10,7 +10,9 @@ Follow the steps to get started with building the system
 ## Raspberry Pi Configuration
 Once the system is wired up. 
 
-* Flash the SD card using a fresh Image of Raspbian OS 32 bit.
+Note: **Make sure to use Raspbian OS 32 bit Legacy. Latest Raspbian (Bullseye) is not supported by Anydesk**
+
+* Flash the SD card using a fresh Image of Raspbian OS 32 bit (Legacy).
 * Enable SSH and WiFi using the advanced settings page.
 ![](images/os.png)
 ![](images/settings.png)
