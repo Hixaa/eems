@@ -79,8 +79,8 @@ class CloudService:
                         print("[!] AutoSync: Not Successfully Added Data! Server Issue !")
                 except:
                     print("[!] AutoSync: Network Issue!")
-            else:
-                print("[!] DataStorage Files are not available!")
+            # else:
+            #     print("[!] DataStorage Files are not available!")
             sleep(1)
 
     def __ping_server(self):

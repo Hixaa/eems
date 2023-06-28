@@ -42,7 +42,7 @@ class StoreJson:
             if file.endswith(".txt"):
                 file_avail.append(file)
         file_avail.sort() #ascending sort
-        print("[+] Available Files: ",file_avail) 
+        # print("[+] Available Files: ",file_avail) 
        
         if(len(file_avail) > 0):
             if (recent):

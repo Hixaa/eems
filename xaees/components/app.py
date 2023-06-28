@@ -45,15 +45,17 @@ class App:
                 
                 self.__DateTime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                 # TODO: add company id in the json data
-                if(self.__uid1 != None): #Outside       Sends "O_"
+                if(self.__uid1 != None and self.__uid1 != 'None'): #Outside       Sends "O_"
+                    # print("[+] RFID1: ", self.__rfidDirection(self.__uid1), "\t", self.__uid1)
                     formattedData_1 = self.__DATA_FORMAT%(self.__DateTime, self.__uid1[14:], self.__gateNo, self.__rfidDirection(self.__uid1))
-                    print("RFID2: ",formattedData_1)
+                    print("RFID1: ",formattedData_1)
                     self.__data.append(formattedData_1)
                     
                 
-                if(self.__uid2 != None): #Inside        Sends "I_"
+                if(self.__uid2 != None and self.__uid2 != 'None'): #Inside        Sends "I_"
+                    # print("[+] RFID2: ", self.__rfidDirection(self.__uid2), "\t", self.__uid2)
                     formattedData_2 = self.__DATA_FORMAT%(self.__DateTime, self.__uid2[14:], self.__gateNo, self.__rfidDirection(self.__uid2))
-                    print("RFID1: ",formattedData_2)
+                    print("RFID2: ",formattedData_2)
                     self.__data.append(formattedData_2)
 
             except Exception as e:
