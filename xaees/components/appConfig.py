@@ -8,6 +8,19 @@ class Config:
         self.__rootFolder = os.getcwd()
         #print(self.__rootFolder)
         self.__configPath = self.__rootFolder+'/config_xaees.ini'
+        self.__devices = os.listdir("/dev/")
+        self.__USB = filter(lambda dev: dev[0:6] == 'ttyUSB', self.__devices)
+        self.__USB = list(self.__USB)
+        try:
+            if (len(self.__USB) == 0):
+                raise "DeviceIssue: Check /dev/ttyUSB*"
+            else:
+                parser = configparser.ConfigParser()
+                parser.read(self.__configPath)
+                parser.set('RFID_1', 'port', self.__USB[0])
+                parser.set('RFID_2', 'port', self.__USB[1])        
+        except Exception as e:
+            print("[!] Unable to Detect RFID: ", e)
         # print("[*] Config Path: ", self.__configPath)
         
     def rfid1Port(self):

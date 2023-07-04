@@ -20,6 +20,8 @@ echo "[+] Performing system upgrade"
 sudo apt update
 sudo apt upgrade -y
 
+echo "[+] Set nameserver to 8.8.8.8"
+sudo cp resolv.conf.head /etc/
 
 echo "[+] Installing anydesk"
 # install anydesk
@@ -30,13 +32,19 @@ sudo ln -s /usr/lib/arm-linux-gnueabihf/libEGL.so /usr/lib/libbrcmEGL.so
 sudo ldconfig
 sudo apt install ./tools/anydesk_6.1.1-1_armhf.deb
 
+echo "[+] Enable VNC"
+sudo systemctl enable vncserver-x11-serviced.service
+
 echo "[+] Installing scripts"
-sudo apt install vim
+sudo apt install vim -y
 pip3 install urllib3
 pip3 install requests
 pip3 install chardet
+sudo cp cleanup.sh /
+sudo chmod +x /cleanup.sh
 sudo mv xaees/xaees.service /lib/systemd/system/
 sudo cp -r xaees/* /
+sudo chmod +x onboot.sh
 
 echo "[+] Done with the installation"
 echo "[*] Please do a REBOOT"

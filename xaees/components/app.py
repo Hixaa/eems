@@ -16,9 +16,9 @@ OUTSIDE_STATUS = 2
 class App:
     def __init__(self):
         try:
+            self.__config = Config()
             self.__myrfid = RFID()
             # print("[!] OSError Occured!! Retrying...")
-            self.__config = Config()
             # TODO: add companyId 
             # self.__companyID = self.__config.companyId()
             self.__gateNo = Gate().read()
