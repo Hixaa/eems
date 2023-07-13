@@ -44,7 +44,12 @@ sudo cp cleanup.sh /
 sudo chmod +x /cleanup.sh
 sudo mv xaees/xaees.service /lib/systemd/system/
 sudo cp -r xaees/* /
-sudo chmod +x onboot.sh
+
+echo "[+] Making our service onboot"
+sudo systemctl enable xaees
+#sudo systemctl start xaees
+
+echo "[+] Enabled xaees for ON BOOT"
 
 echo "[+] Done with the installation"
 echo "[*] Please do a REBOOT"
