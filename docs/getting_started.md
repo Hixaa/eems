@@ -16,6 +16,7 @@ Note: **Make sure to use Raspbian OS 32 bit Legacy. Latest Raspbian (Bullseye) i
 * Flash the SD card using a fresh Image of Raspbian OS 32 bit (Legacy).
 * Open advanced settings page from the gear icon at bottom right corner.
 * Enable SSH and WiFi using the advanced settings page.
+
 ![](images/os.png)
 ![](images/settings.png)
 * Once the SD card is flashed insert it into the Raspberry Pi and wait for the initial bootup
@@ -27,11 +28,6 @@ $ sudo curl -fsSL https://raw.githubusercontent.com/Hixaa/eemsV2/main/install.sh
 * Run `sudo raspi-config` then go to "Display Options" > "Resolution" and Select `1280x720` resolution, then select Finish.
 * Connect with VNC and enable unattended access in Anydesk. To open the unattended access menu run `anydesk-global-settings` in terminal.
 ![](images/unattended.png)
-* Now you should have the whole system configured, to make the service on boot run
-```sh
-$ cd ~/eemsV2
-$ sudo chmod +x onboot.sh
-$ sudo ./onboot.sh
-```
+* Update Gate number in the `config_xaees.ini` file as per the requirement.
 
 Now the installation is complete!
