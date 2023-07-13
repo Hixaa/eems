@@ -24,7 +24,6 @@ Note: **Make sure to use Raspbian OS 32 bit Legacy. Latest Raspbian (Bullseye) i
 ```sh
 $ sudo curl -fsSL https://raw.githubusercontent.com/Hixaa/eemsV2/main/install.sh | bash
 ```
-* Enable VNC using `sudo raspi-config` by going in Interface Options.
 * Connect with VNC and enable unattended access in Anydesk. To open the unattended access menu run `anydesk-global-settings` in terminal.
 ![](images/unattended.png)
 * Now you should have the whole system configured, to make the service on boot run
