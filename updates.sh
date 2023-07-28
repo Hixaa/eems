@@ -35,12 +35,9 @@ else
 
 fi
 
-<<<<<<< HEAD
 echo "[+] Redownloading source"
 cd ~
 rm -rf eemsv2
 git clone https://github.com/hixaa/eemsv2
 
-=======
->>>>>>> 5bec79936c673d81753e316b4927dd5223313145
 echo "[*] Done"
