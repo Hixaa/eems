@@ -19,8 +19,7 @@ class App:
             self.__config = Config()
             self.__myrfid = RFID()
             # print("[!] OSError Occured!! Retrying...")
-            # TODO: add companyId 
-            # self.__companyID = self.__config.companyId()
+            self.__companyID = self.__config.companyId()
             self.__gateNo = Gate().read()
             self.__cloud = CloudService()
             self.__ledstat = statusLED()
@@ -28,7 +27,7 @@ class App:
             self.__uid2 = ''
             self.__data = []
             self.__ledstat.sysReady_Show(True)
-            self.__DATA_FORMAT = '{"DateTime":"%s","UID":"%s","DoorNo":"%d","Status":"%d"}'
+            self.__DATA_FORMAT = '{"dt":"%s","cid":"%d","uid":"%s","gn":"%d","io":"%d"}'
         except:
             self.__ledstat.sysReady_Show(False)
 
@@ -45,17 +44,16 @@ class App:
                 self.__uid2 = self.__myrfid.getUID(2) #Inside
                 
                 self.__DateTime = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                # TODO: add company id in the json data
                 if(self.__uid1 != None and self.__uid1 != 'F'): #Outside       Sends "O_"
                     print("[+] RFID1: ", self.__rfidDirection(self.__uid1), "\t", self.__uid1, "\t", len(self.__uid1))
-                    formattedData_1 = self.__DATA_FORMAT%(self.__DateTime, self.__uid1[14:], self.__gateNo, self.__rfidDirection(self.__uid1))
+                    formattedData_1 = self.__DATA_FORMAT%(self.__DateTime, self.__companyID, self.__uid1[14:], self.__gateNo, self.__rfidDirection(self.__uid1))
                     print("RFID1: ",formattedData_1)
                     self.__data.append(formattedData_1)
                     
                 
                 if(self.__uid2 != None and self.__uid2 != 'F'): #Inside        Sends "I_"
                     print("[+] RFID2: ", self.__rfidDirection(self.__uid2), "\t", self.__uid2, "\t", len(self.__uid2))
-                    formattedData_2 = self.__DATA_FORMAT%(self.__DateTime, self.__uid2[14:], self.__gateNo, self.__rfidDirection(self.__uid2))
+                    formattedData_2 = self.__DATA_FORMAT%(self.__DateTime, self.__companyID, self.__uid2[14:], self.__gateNo, self.__rfidDirection(self.__uid2))
                     print("RFID2: ",formattedData_2)
                     self.__data.append(formattedData_2)
 
