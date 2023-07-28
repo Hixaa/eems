@@ -19,7 +19,8 @@ class CloudService:
         return namedtuple('X', userData.keys())(*userData.values())
 
     def __dataFormat(self, data):
-        return {"DateTime":data.DateTime,"UID":data.UID,"DoorNo":data.DoorNo,"Status":data.Status}
+        return {"dt":data.dt,"cid":data.cid,"uid":data.uid,"gn":data.gn,"io":data.io}
+    
     def push(self,data):
         try:
             json_data_list = []
@@ -32,13 +33,19 @@ class CloudService:
             headers = {}
 
             jsonArrObj = json.loads(json.dumps({"entry":json_data_list}))
+            print("\t\t ENTRY: ", jsonArrObj)
             payload = {'data':str(json.dumps(jsonArrObj))}
+            print("Payload: ", payload)
+            #print("URL:", self.__url)
             resp = requests.request("POST", self.__url, headers=headers, data=payload, files=files)
             
-            # print("Status_raw: ",resp.text)
-            dict_data = json.loads(resp.text)
-            print("[+] Status_dict: ", dict_data)
-            if(dict_data['success'] == 1):
+            print("Status_Code: ",resp.status_code)
+            #print(type(resp.status_code))
+            #dict_data = json.loads(resp.text)
+            #print("[+] Status_dict: ", dict_data)
+            #if(dict_data['success'] == 1):
+            
+            if(resp.status_code == 200):
                 print("[+] Successfully Added Data!")
                 self.__ledtstat.dataUploadStat_Show()
             else:
@@ -68,10 +75,14 @@ class CloudService:
                     payload = {'data':str(json.dumps(jsonArrObj))}
                     resp = requests.request("POST", self.__url, headers=headers, data=payload, files=files)
 
-                    print("[+] Status_raw: ",resp.text)
-                    dict_data = json.loads(resp.text)
-                    print("[+] Status_dict: ", dict_data)
-                    if(dict_data['success'] == 1):
+                    #print("[+] Status_raw: ",resp.text)
+                    #dict_data = json.loads(resp.text)
+                    #print("[+] Status_dict: ", dict_data)
+                    #if(dict_data['success'] == 1):
+                    
+                    # print("[+] Payload: ", payload)
+                    # print("[+] Status Code: ", resp.status_code)
+                    if(resp.status_code == 200):
                         print("[+] Successfully Added Data!")
                         self.__ledtstat.dataUploadStat_Show()
                         self.__storeData.truncateFile()
@@ -84,5 +95,5 @@ class CloudService:
             sleep(1)
 
     def __ping_server(self):
-        cmd = ['ping','-c','1','boilerlive.xaees.com']
+        cmd = ['ping','-c','1','www.rakshaiot.com']
         return subprocess.call(cmd) == 0
