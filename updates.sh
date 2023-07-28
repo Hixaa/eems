@@ -36,7 +36,7 @@ else
 fi
 
 echo "[+] Redownloading source"
-cd ~
+cd /home/pi
 rm -rf eemsv2
 git clone https://github.com/hixaa/eemsv2
 
