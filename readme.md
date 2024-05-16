@@ -1,6 +1,7 @@
 # Entry Exit Monitoring System
 This system is to monitor entry and exit in confined space using UHF RFID. The main controller for this project is Raspberry Pi Zero 2W.
 But this can be replicated on any Raspberry Pi.
+The eemsV3 is specifically made to interface with HR11 RFID Readers
 
 TODO: add photo of system
 
